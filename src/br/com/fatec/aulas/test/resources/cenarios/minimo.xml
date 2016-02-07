@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+
+	<tbl_cliente id="1" nome="John" sobrenome="MENDES"
+		telefone="3655-5566" data_cadastro="2000-04-01" email="joao@mendes.com" />
+	<tbl_cliente id="2" nome="Joseph" sobrenome="NANTES"
+		telefone="3666-1234" data_cadastro="2001-03-02" email="jose@nantes.com" />
+	<tbl_cliente id="3" nome="GEORGE" sobrenome="MALLORYS"
+		telefone="1111-2222" data_cadastro="1924-04-09" email="george@mallorys.com" />
+
+	<tbl_funcionario id="1" nome="joao2" sobrenome="santos"
+		telefone="3654-7788" data_admissao="1999-06-05" data_demissao="2001-08-01"
+		email="joao2@santos.com.br" />
+	<tbl_funcionario id="2" nome="jose" sobrenome="luiz"
+		telefone="9134-7790" data_admissao="2000-06-07" data_demissao="2011-04-03"
+		email="jose@jose.com.br" />
+	<tbl_funcionario id="3" nome="paulo" sobrenome="cruz"
+		telefone="8860-1234" data_admissao="2001-06-09" data_demissao="2014-01-02"
+		email="paulo@paulo.com.br" />
+
+	<tbl_servico id="1" nome="Manutenção Preventiva" descricao="Limpeza e verificação de fadigas" />
+	<tbl_servico id="2" nome="Manutenção Corretiva" descricao="Limpeza e troca de peças" />
+	<tbl_servico id="3" nome="Limpeza" descricao="Limpeza" />
+
+	<tbl_historico id="1" cliente_id="1" funcionario_id="1"
+		data_realizacao="1978-06-05" valor="100.50" observacao="S/A" />
+	<tbl_historico id="2" cliente_id="2" funcionario_id="2"
+		data_realizacao="1980-01-07" valor="290.80" observacao="S/A" />
+	<tbl_historico id="3" cliente_id="3" funcionario_id="3"
+		data_realizacao="2000-09-09" valor="40.50" observacao="S/A" />
+
+	<tbl_hist_serv id="1" historico_id="1" servico_id="1" />
+	<tbl_hist_serv id="2" historico_id="2" servico_id="2" />
+	<tbl_hist_serv id="3" historico_id="3" servico_id="3" />
+
+</dataset>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+		
+
+
+	<changeSet id="001" author="joao.mendes">
+		<createTable tableName="tbl_cliente">
+			<column name="id" type="java.sql.Types.BIGINT" />	
+			<column name="nome" type="java.sql.Types.VARCHAR(255)" />		
+			<column name="sobrenome" type="java.sql.Types.VARCHAR(255)" />	
+			<column name="telefone" type="java.sql.Types.VARCHAR(255)" />	
+			<column name="data_cadastro" type="java.sql.Types.DATE" />
+		</createTable>
+		<addPrimaryKey tableName="tbl_cliente" columnNames="id"/>
+	</changeSet>
+	
+	
+	<changeSet id="002" author="joao.mendes">
+		<addColumn tableName="tbl_cliente">
+			<column name="email" type="java.sql.Types.VARCHAR(255)" ></column>
+			</addColumn>
+			<addNotNullConstraint tableName="tbl_cliente" columnName="id"/>
+			<addNotNullConstraint tableName="tbl_cliente" columnName="nome"/>
+			<addNotNullConstraint tableName="tbl_cliente" columnName="sobrenome"/>
+			<addNotNullConstraint tableName="tbl_cliente" columnName="telefone"/>
+			<addNotNullConstraint tableName="tbl_cliente" columnName="data_cadastro"/>	
+						
+	</changeSet>
+	
+	<changeSet id="003" author="joao.mendes">
+		<createTable tableName="tbl_funcionario">
+			<column name="id" type="java.sql.Types.BIGINT" />
+			<column name="nome" type="java.sql.Types.VARCHAR(255)" />
+			<column name="sobrenome" type="java.sql.Types.VARCHAR(255)" />
+			<column name="telefone" type="java.sql.Types.VARCHAR(255)" />
+			<column name="data_admissao" type="java.sql.Types.DATE" />
+			<column name="data_demissao" type="java.sql.Types.DATE" />
+		</createTable>
+		<addPrimaryKey tableName="tbl_funcionario" columnNames="id"/>
+	</changeSet>
+	
+		<changeSet id="004" author="joao.mendes">
+		<addColumn tableName="tbl_funcionario">
+			<column name="email" type="java.sql.Types.VARCHAR(255)" ></column>
+			</addColumn>
+			<addNotNullConstraint tableName="tbl_funcionario" columnName="id"/>
+			<addNotNullConstraint tableName="tbl_funcionario" columnName="nome"/>
+			<addNotNullConstraint tableName="tbl_funcionario" columnName="sobrenome"/>
+			<addNotNullConstraint tableName="tbl_funcionario" columnName="telefone"/>
+			<addNotNullConstraint tableName="tbl_funcionario" columnName="data_admissao"/>					
+	</changeSet>
+
+	<changeSet id="005" author="joao.mendes">
+		<createTable tableName="tbl_servico">
+			<column name="id" type="java.sql.Types.BIGINT">
+			<constraints nullable="false" />
+			</column> 
+			<column name="nome" type="java.sql.Types.VARCHAR(255)">
+			<constraints nullable="false" />
+			</column>
+			<column name="descricao" type="java.sql.Types.VARCHAR(255)" />
+		</createTable>
+		<addPrimaryKey tableName="tbl_servico" columnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="006" author="joao.mendes">
+		<createTable tableName="tbl_historico">
+			<column name="id" type="java.sql.Types.BIGINT">
+			<constraints nullable="false" />
+			</column> 
+			<column name="cliente_id" type="java.sql.Types.BIGINT">
+			<constraints nullable="false" />
+			</column>
+			<column name="funcionario_id" type="java.sql.Types.BIGINT">
+			<constraints nullable="false" />
+			</column>
+			<column name="data_realizacao" type="java.sql.Types.DATE" />
+			<column name="valor" type="java.sql.Types.DOUBLE" />
+			<column name="observacao" type="java.sql.Types.VARCHAR(255)" />
+		</createTable>
+		<addPrimaryKey tableName="tbl_historico" columnNames="id"/>
+		<addForeignKeyConstraint
+			constraintName="fk_historico_cliente"
+			baseTableName="tbl_historico"
+			baseColumnNames="cliente_id"
+			referencedTableName="tbl_cliente"
+			referencedColumnNames="id"/>
+		<addForeignKeyConstraint
+			constraintName="fk_historico_funcionario"
+			baseTableName="tbl_historico"
+			baseColumnNames="funcionario_id"
+			referencedTableName="tbl_funcionario"
+			referencedColumnNames="id"/>
+	</changeSet>
+
+	
+	<changeSet id="007" author="joao.mendes">
+		<createTable tableName="tbl_hist_serv">
+			<column name="id" type="java.sql.Types.BIGINT">
+			<constraints nullable="false" />
+			</column> 
+			<column name="historico_id" type="java.sql.Types.BIGINT">
+			<constraints nullable="false" />
+			</column>
+			<column name="servico_id" type="java.sql.Types.BIGINT">
+			<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addPrimaryKey tableName="tbl_hist_serv" columnNames="id"/>
+		<addForeignKeyConstraint
+			constraintName="fk_hist_serv_historico"
+			baseTableName="tbl_hist_serv"
+			baseColumnNames="historico_id"
+			referencedTableName="tbl_historico"
+			referencedColumnNames="id"/>
+		<addForeignKeyConstraint
+			constraintName="fk_hist_serv_servico"
+			baseTableName="tbl_hist_serv"
+			baseColumnNames="servico_id"
+			referencedTableName="tbl_servico"
+			referencedColumnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="008" author="joao.mendes">
+		<createTable tableName="TBL_IDS">
+			<column name="TABLE_NAME" type="java.sql.Types.VARCHAR(100)">
+			<constraints nullable="false" />
+			</column>
+			<column name="NEXT_ID" type="java.sql.Types.BIGINT" defaultValue="1">
+			<constraints nullable="false" />
+			</column>
+		</createTable>
+	<insert tableName="TBL_IDS">
+		<column name="TABLE_NAME">TBL_CLIENTE</column>
+		<column name="NEXT_ID">10</column>
+	</insert>
+	
+	<insert tableName="TBL_IDS">
+		<column name="TABLE_NAME">TBL_FUNCIONARIO</column>
+		<column name="NEXT_ID">10</column>
+	</insert>
+	
+	<insert tableName="TBL_IDS">
+		<column name="TABLE_NAME">TBL_SERVICO</column>
+		<column name="NEXT_ID">10</column>
+	</insert>
+	
+	<insert tableName="TBL_IDS">
+		<column name="TABLE_NAME">TBL_HISTORICO</column>
+		<column name="NEXT_ID">10</column>
+	</insert>
+	
+	<insert tableName="TBL_IDS">
+		<column name="TABLE_NAME">TBL_HIST_SERV</column>
+		<column name="NEXT_ID">10</column>
+	</insert>
+	
+	</changeSet>
+	
+
+	
+	
+
+</databaseChangeLog>
