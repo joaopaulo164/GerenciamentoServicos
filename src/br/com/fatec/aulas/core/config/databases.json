@@ -1,0 +1,30 @@
+[
+	{
+		"name": "fatec111",
+		"url": "jdbc:postgresql://localhost:5432/fatec",
+		"login": "postgres",
+		"password": "fatec",
+		"driverClassName": "org.postgresql.Driver"
+	},
+	{
+		"name": "fatec",
+		"url": "jdbc:hsqldb:mem:teste",
+		"login": "sa",
+		"password": "",
+		"driverClassName": "org.hsqldb.jdbcDriver"
+	},
+	{
+		"name": "fatec-oralce",
+		"url": "jdbc:oracle:thin:@localhost:1521:XE",
+		"login": "system",
+		"password": "fatec",
+		"driverClassName": "oracle.jdbc.driver.OracleDriver"
+	},
+	{
+		"name": "fatec-file-teste",
+		"url": "jdbc:hsqldb:file:teste",
+		"login": "sa",
+		"password": "",
+		"driverClassName": "org.hsqldb.jdbcDriver"
+	}
+]
